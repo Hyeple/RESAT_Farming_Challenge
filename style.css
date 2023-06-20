@@ -55,7 +55,9 @@ span,i,em,strong,b,a {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   width: 90rem;
+  overflow: hidden;
 }
+
 #wrap #header .header-container .brand-logo {
   display: flex;
   align-items: center;
