@@ -38,9 +38,9 @@ span,i,em,strong,b,a {
   display: none;
 }
 
-
 #wrap {
   width: 100%;
+  overflow-x: auto;
 }
 #wrap #header {
   display: flex;
@@ -49,13 +49,20 @@ span,i,em,strong,b,a {
   height: 61px;
   border-bottom: 1px solid rgba(0, 56, 68, 0.1);
 }
+  #wrap #header .header-container .brand-logo,
+  #wrap #header .header-container .nav,
+  #wrap #header .header-container .member {
+    flex-shrink: 0;
+}
 #wrap #header .header-container {
   display: flex;
   align-items: center;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   width: 90rem;
+  overflow: hidden;
 }
+
 #wrap #header .header-container .brand-logo {
   display: flex;
   align-items: center;
