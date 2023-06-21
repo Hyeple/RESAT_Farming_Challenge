@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>카운트 다운 타이머</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="input-section">
+    <label for="hours">시간:</label>
+    <input type="number" id="hours" min="0" max="23" value="0">
+
+    <label for="minutes">분:</label>
+    <input type="number" id="minutes" min="0" max="59" value="0">
+
+    <label for="seconds">초:</label>
+    <input type="number" id="seconds" min="0" max="59" value="0">
+  </div>
+
+  <div id="timer-section">
+    <span id="timer">00 : 00 : 00</span>
+  </div>
+
+  <div>
+    <button id="start-btn">Start</button>
+    <button id="stop-btn">Stop</button>
+    <button id="reset-btn">Reset</button>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
