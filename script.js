@@ -97,13 +97,14 @@ function renderTasks() {
         const taskText = document.createElement('span');
         taskText.textContent = task.text;
         taskText.ondblclick = () => editTaskText(task.id, taskText);
+        attachMobileEditHandler(taskText, task.id, taskText);
 
         if (task.completed) {
             taskText.classList.add('completed-task');
         }
 
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
+        deleteButton.textContent = 'X';
         deleteButton.onclick = () => removeTask(task.id);
 
         taskDiv.appendChild(checkbox);
@@ -128,6 +129,19 @@ function removeTask(taskId) {
     renderTasks();
     saveTasks();
 }
+
+function attachMobileEditHandler(element, taskId, taskTextElement) {
+    let lastTouchTime = 0;
+    element.addEventListener('touchend', () => {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTouchTime;
+        lastTouchTime = currentTime;
+        if (tapLength < 500 && tapLength > 0) {
+            editTaskText(taskId, taskTextElement);
+        }
+    });
+}
+
 
 function editTaskText(taskId, taskTextElement) {
     const task = tasks.find(t => t.id === taskId);
