@@ -21,16 +21,17 @@
         </div>
 
         <div>
-            <select id = "filterSelect">
+            <select id = "filterSelect" onchange ="renderTasks()">
                 <option value="all">전체</option>
                 <option value="completed">완료</option>
                 <option value="not-completed">미완료</option>
             </select>
+
             <label>
-                <input type="radio" name="sortOrder" value="high-to-low"> High to Low
+                <input type="radio" name="sortOrder" value="high-to-low" onchange="renderTasks()"> High to Low
             </label>
             <label>
-                <input type="radio" name="sortOrder" value="low-to-high"> Low to High
+                <input type="radio" name="sortOrder" value="low-to-high" onchange="renderTasks()"> Low to High
             </label>
         </div>
         <div id = "taskList"></div>
