@@ -22,19 +22,24 @@ function addTask() {
     const taskInput = document.getElementById('todoInput');
     const prioritySelect = document.getElementById('prioritySelect');
 
-    const task = {
-        id: Date.now(),
-        text: taskInput.value,
-        priority: prioritySelect.value,
-        completed: false,
-    };
-
-    tasks.push(task);
-
-    taskInput.value = '';
-
-    renderTasks();
-    saveTasks();
+    if(taskInput.value.trim() === ''){
+        alert("할 일을 작성해주세요");
+        taskInput.value = '';
+    } else {
+        const task = {
+            id: Date.now(),
+            text: taskInput.value,
+            priority: prioritySelect.value,
+            completed: false,
+        };
+    
+        tasks.push(task);
+    
+        taskInput.value = '';
+    
+        renderTasks();
+        saveTasks();
+    }
 }
 
 function filterTasks(tasks, filterValue) {

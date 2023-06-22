@@ -20,6 +20,8 @@
             <button onclick = "addTask()">추가</button>
         </div>
 
+        <br/>
+
         <div>
             <select id = "filterSelect" onchange ="renderTasks()">
                 <option value="all">전체</option>
@@ -28,7 +30,7 @@
             </select>
 
             <label>
-                <input type="radio" name="sortOrder" value="high-to-low" onchange="renderTasks()"> High to Low
+                <input type="radio" name="sortOrder" value="high-to-low" onchange="renderTasks()" checked> High to Low
             </label>
             <label>
                 <input type="radio" name="sortOrder" value="low-to-high" onchange="renderTasks()"> Low to High
