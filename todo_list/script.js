@@ -1,13 +1,27 @@
-let taskStack = [];
+let tasks = [];
+
+function loadTasks() {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+        tasks = JSON.parse(storedTasks);
+    }
+}
+
+function saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+const priorityValues = {
+    "very-high": 4,
+    "high": 3,
+    "medium": 2,
+    "low": 1
+};
 
 function addTask() {
     const taskInput = document.getElementById('todoInput');
     const prioritySelect = document.getElementById('prioritySelect');
 
-    if(taskInput.value == '') {
-        alert("할 일을 작성해주세요!");
-    }
-    
     const task = {
         id: Date.now(),
         text: taskInput.value,
@@ -15,27 +29,21 @@ function addTask() {
         completed: false,
     };
 
-    taskStack.push(task);
-    console.log("추가된 task : %s", task.text);
+    tasks.push(task);
+
     taskInput.value = '';
 
     renderTasks();
+    saveTasks();
 }
 
-const priorityValues = {
-    'very-high': 4,
-    'high': 3,
-    'medium': 2,
-    'low': 1
-};
-
-function filterTasks(taskStack, filterValue) {
-    let filteredTasks = taskStack;
+function filterTasks(tasks, filterValue) {
+    let filteredTasks = tasks;
 
     if (filterValue === "completed") {
-        filteredTasks = taskStack.filter(task => task.completed);
+        filteredTasks = tasks.filter(task => task.completed);
     } else if (filterValue === "not-completed") {
-        filteredTasks = taskStack.filter(task => !task.completed);
+        filteredTasks = tasks.filter(task => !task.completed);
     }
 
     return filteredTasks;
@@ -66,7 +74,7 @@ function renderTasks() {
 
     taskList.innerHTML = '';
 
-    let filteredTasks = filterTasks(taskStack, filterValue);
+    let filteredTasks = filterTasks(tasks, filterValue);
 
     filteredTasks = sortTasks(filteredTasks, sortValue);
 
@@ -91,7 +99,7 @@ function renderTasks() {
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
-        deleteButton.onclick = () => deleteTask(task.id);
+        deleteButton.onclick = () => removeTask(task.id);
 
         taskDiv.appendChild(checkbox);
         taskDiv.appendChild(taskText);
@@ -101,19 +109,23 @@ function renderTasks() {
     });
 }
 
+
+
 function toggleTaskCompletion(taskId) {
-    const task = taskStack.find(t => t.id === taskId);
+    const task = tasks.find(t => t.id === taskId);
     task.completed = !task.completed;
     renderTasks();
+    saveTasks();
 }
 
-function deleteTask(taskId) {
-    taskStack = taskStack.filter(task => task.id !== taskId);
+function removeTask(taskId) {
+    tasks = tasks.filter(task => task.id !== taskId);
     renderTasks();
+    saveTasks();
 }
 
 function editTaskText(taskId, taskTextElement) {
-    const task = taskStack.find(t => t.id === taskId);
+    const task = tasks.find(t => t.id === taskId);
     const inputElement = document.createElement('input');
     inputElement.type = 'text';
     inputElement.value = task.text;
@@ -132,6 +144,9 @@ function editTaskText(taskId, taskTextElement) {
             renderTasks();
         }
     });
+    saveTasks();
 }
+
+loadTasks();
 
 renderTasks();
