@@ -91,7 +91,7 @@ function renderTasks() {
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
-        //deleteButton.onclick = () => removeTask(task.id);
+        deleteButton.onclick = () => deleteTask(task.id);
 
         taskDiv.appendChild(checkbox);
         taskDiv.appendChild(taskText);
@@ -104,6 +104,11 @@ function renderTasks() {
 function toggleTaskCompletion(taskId) {
     const task = taskStack.find(t => t.id === taskId);
     task.completed = !task.completed;
+    renderTasks();
+}
+
+function deleteTask(taskId) {
+    taskStack = taskStack.filter(task => task.id !== taskId);
     renderTasks();
 }
 
