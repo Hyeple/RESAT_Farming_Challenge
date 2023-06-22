@@ -83,7 +83,7 @@ function renderTasks() {
 
         const taskText = document.createElement('span');
         taskText.textContent = task.text;
-        //taskText.ondblclick = () => editTaskText(task.id, taskText);
+        taskText.ondblclick = () => editTaskText(task.id, taskText);
 
         if (task.completed) {
             taskText.classList.add('completed-task');
@@ -110,6 +110,28 @@ function toggleTaskCompletion(taskId) {
 function deleteTask(taskId) {
     taskStack = taskStack.filter(task => task.id !== taskId);
     renderTasks();
+}
+
+function editTaskText(taskId, taskTextElement) {
+    const task = taskStack.find(t => t.id === taskId);
+    const inputElement = document.createElement('input');
+    inputElement.type = 'text';
+    inputElement.value = task.text;
+    
+    taskTextElement.replaceWith(inputElement);
+    inputElement.focus();
+    
+    inputElement.addEventListener('blur', () => {
+        task.text = inputElement.value;
+        renderTasks();
+    });
+    
+    inputElement.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            task.text = inputElement.value;
+            renderTasks();
+        }
+    });
 }
 
 renderTasks();
