@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateSlider() {
         const offset = -index * 100;
         wrapper.style.transform = `translateX(${offset}%)`;
-
         slider.style.height = `${slides[index].offsetHeight}px`;
     }
 

@@ -1,3 +1,8 @@
+.slider-box {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
 .slider {
     position: relative;
     overflow: hidden;
@@ -12,6 +17,7 @@
 .slider-wrapper img {
     width: 100%;
     height: auto;
+    display: block;
 }
 
 .control {
