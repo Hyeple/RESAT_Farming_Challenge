@@ -33,10 +33,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Set the initial height of the slider
+
     if (slides.length > 0) {
         slides[0].addEventListener('load', () => {
             slider.style.height = `${slides[0].offsetHeight}px`;
         });
     }
+    
+    setInterval(() => {
+        index = (index + 1) % slides.length;
+        updateSlider();
+    }, 2000);
 });
