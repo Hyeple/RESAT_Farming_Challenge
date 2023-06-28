@@ -245,22 +245,35 @@
               </div>
             </li>
           </ul>
+          
           <div class="content-3">
             <div class="banner-img-box">
-              <div class="img-container">
-                <img src="./img/붙임4-대표이미지.png" alt="">
+              <div class="img-container" id="slider">
+                <img src="./img/붙임4-대표이미지.png" alt="" class="slide" sytle = "display: block;">
+                <img src="./img/지방대-문과생이-IT-취업에-이직까지-성공했다고-cover.jpg" alt="" class="slide" style="display: none;">
+                <img src="./img/알잘딱깔센-취업준비-신입사원-노하우-공유-cover.jpg" alt="" class="slide" style="display: none;">
+                <img src="./img/노하우.png" alt="" class="slide" style="display: none;">
               </div>
             </div>
+            <button id="prev" class="arrow-btn">❮</button>
+            <button id="next" class="arrow-btn">❯</button>
             <div class="banner-info-box">
               <span>서비스 런칭</span>
               <p class="happyfolio-banner-info-title">해피폴리오로 취업 정보를 받으세요</p>
               <p class="happyfolio-banner-info-text">
-                검증된 현직자의 취업 스토리로 
-                <br> 
+                검증된 현직자의 취업 스토리로
+                <br>
                 취준 전략을 세우세요
               </p>
             </div>
           </div>
+          
+
+
+
+
+          
+
           <div class="content-4">
             <p class="title">채용 중인 기업을 확인하세요</p>
             <div class="sub-title">
@@ -730,3 +743,29 @@
   </div>
 </body>
 </html>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlide(index) {
+    slides[currentSlide].style.opacity = 0;
+    slides[currentSlide].style.display = 'none';
+    currentSlide = index;
+    if (currentSlide >= slides.length) {
+      currentSlide = 0;
+    } else if (currentSlide < 0) {
+      currentSlide = slides.length - 1;
+    }
+    slides[currentSlide].style.opacity = 1;
+    slides[currentSlide].style.display = 'block';
+  }
+
+  document.getElementById('prev').addEventListener('click', function() {
+    showSlide(currentSlide - 1);
+  });
+
+  document.getElementById('next').addEventListener('click', function() {
+    showSlide(currentSlide + 1);
+  });
+</script>

@@ -1193,3 +1193,33 @@ span,i,em,strong,b,a {
   line-height: 20px;
   color: rgb(171, 177, 177);
 }
+
+.slide {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.slide:first-of-type {
+  opacity: 1;
+}
+
+
+.arrow-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2em;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+}
+
+#prev {
+  left: 10px;
+}
+
+#next {
+  right: 10px;
+}
