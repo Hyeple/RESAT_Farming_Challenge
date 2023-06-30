@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #login-container label,
+        #login-container input,
+        #login-container button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login-container">
+        <label for="username">아이디:</label>
+        <input type="text" id="username">
+
+        <label for="password">패스워드:</label>
+        <input type="password" id="password">
+
+        <button onclick="login()">로그인</button>
+    </div>
+
+    <div id="toast"></div>
+
+    <script>
+        const correctUsername = 'id';
+        const correctPassword = 'password';
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === correctUsername && password === correctPassword) {
+                showToast('로그인 되었습니다!');
+            } else {
+                showToast('아이디 혹은 패스워드가 잘못되었습니다.');
+            }
+        }
+    </script>
+</body>
+
+</html>
